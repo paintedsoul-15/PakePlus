@@ -1,56 +1,50 @@
 name: Windows Build (Simple)
 
 on:
-  workflow_dispatch: # 允许你手动点击按钮触发构建
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   build-windows:
-    runs-on: windows-latest # 指定使用 Windows 系统进行打包
+    runs-on: windows-latest
 
     steps:
-      # 1. 拉取你的代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. 安装 Node.js (JavaScript 环境)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      # 3. 安装 pnpm (包管理器)
+      # 👇👇👇 1. 先安装 pnpm (把这一步提到 Node 之前) 👇👇👇
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: latest
           run_install: false
 
-      # 4. 安装 Rust (Tauri 的核心语言环境)
+      # 👇👇👇 2. 再安装 Node.js (现在可以使用 cache: pnpm 了) 👇👇👇
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm' # 此时 pnpm 已经安装好了，不会报错
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-pc-windows-msvc
 
-      # 5. 安装项目依赖
       - name: Install dependencies
         run: pnpm install
 
-      # 6. 自动生成图标 (确保你的 app-icon.png 生效)
       - name: Generate Icons
         run: |
           if (Test-Path "app-icon.png") {
             pnpm tauri icon app-icon.png
           }
 
-      # 7. 【核心】打包 Windows 应用 (移除了签名验证)
       - name: Build Windows App
         run: pnpm tauri build
 
-      # 8. 上传打包好的 exe 文件供你下载
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
