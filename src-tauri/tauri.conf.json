@@ -3,6 +3,21 @@
     "productName": "芝芝",
     "version": "../package.json",
     "identifier": "com.zhizhi.app",
+    
+    "//": "👇👇👇 新增了这段 bundle 配置，强制打成 .exe 安装包 👇👇👇",
+    "bundle": {
+        "active": true,
+        "targets": ["nsis"],
+        "icon": [
+            "icons/32x32.png",
+            "icons/128x128.png",
+            "icons/128x128@2x.png",
+            "icons/icon.icns",
+            "icons/icon.ico"
+        ]
+    },
+    "//": "👆👆👆 新增结束 👆👆👆",
+
     "build": {
         "devUrl": "http://localhost:1420",
         "frontendDist": "../dist"
@@ -67,14 +82,4 @@
             "create_webview_window": true
         },
         "updater": {
-            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI0MkI3NDVCOUM2NDE1QTgKUldTb0ZXU2NXM1FydEsrN29Edjg2c0kxZmk1YWpRa3ZUMjE1S2NLeGVFRkJRWW1SSnhXQ2F3S0EK",
-            "endpoints": [
-                "https://gh-proxy.com/github.com/Sjj1024/PakePlus/releases/latest/download/ppupdate.json",
-                "https://gh-proxy.org/http://github.com/Sjj1024/PakePlus/releases/latest/download/ppupdate.json"
-            ],
-            "windows": {
-                "installMode": "passive"
-            }
-        }
-    }
-}
+            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaW
