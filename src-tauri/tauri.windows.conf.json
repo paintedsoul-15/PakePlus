@@ -1,29 +1,31 @@
 {
-    "identifier": "com.zhizhi.app",
-    "bundle": {
-        "active": true,
-        "targets": ["nsis"],
-        "resources": [
-            "./data/man.json",
-            "./data/vconsole.min.js",
-            "./data/rh.exe"
-        ],
-        "createUpdaterArtifacts": true,
-        "icon": [
-            "icons/32x32.png",
-            "icons/128x128.png",
-            "icons/128x128@2x.png",
-            "icons/icon.icns",
-            "icons/icon.ico"
-        ],
-        "windows": {
-            "nsis": {
-                "displayLanguageSelector": true,
-                "installMode": "perMachine"
-            },
-            "webviewInstallMode": {
-                "type": "embedBootstrapper"
-            }
-        }
+  "identifier": "com.zhizhi.app",
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "resources": [
+      "./data/man.json",
+      "./data/vconsole.min.js",
+      "./data/rh.exe"
+    ],
+    "createUpdaterArtifacts": false,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "displayLanguageSelector": true,
+        "installMode": "perMachine"
+      },
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      }
     }
+  }
 }
