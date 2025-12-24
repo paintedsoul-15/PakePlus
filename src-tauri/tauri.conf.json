@@ -1,85 +1,93 @@
 {
-    "$schema": "https://schema.tauri.app/config/2",
-    "productName": "芝芝",
-    "version": "../package.json",
-    "identifier": "com.zhizhi.app",
-    
-    "//": "👇👇👇 新增了这段 bundle 配置，强制打成 .exe 安装包 👇👇👇",
-    "bundle": {
-        "active": true,
-        "targets": ["nsis"],
-        "icon": [
-            "icons/32x32.png",
-            "icons/128x128.png",
-            "icons/128x128@2x.png",
-            "icons/icon.icns",
-            "icons/icon.ico"
-        ]
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "芝芝",
+  "version": "../package.json",
+  "identifier": "com.zhizhi.app",
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "build": {
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "芝芝",
+        "label": "main",
+        "url": "https://xmas.chaz.fun/?id=5YlLZOJ4sp1_HbMi&m=view",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false,
+        "visible": true,
+        "acceptFirstMouse": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+      }
+    ],
+    "security": {
+      "assetProtocol": {
+        "enable": true,
+        "scope": {
+          "allow": [
+            "$APPCONFIG/**",
+            "$APPLOCALDATA/**",
+            "$APPCACHE/**",
+            "$APPDATA/**",
+            "$APPLOG/**",
+            "$AUDIO/**",
+            "$CACHE/**",
+            "$CONFIG/**",
+            "$DATA/**",
+            "$LOCALDATA/**",
+            "$DESKTOP/**",
+            "$DOCUMENT/**",
+            "$DOWNLOAD/**",
+            "$EXE/**",
+            "$FONT/**",
+            "$HOME/**",
+            "$PICTURE/**",
+            "$PUBLIC/**",
+            "$RUNTIME/**",
+            "$ASSETS/**",
+            "$VIDEO/**",
+            "$TEMP/**",
+            "$RESOURCE/../**",
+            "$ASSETS/**",
+            "$TEMPLATE/**",
+            "**",
+            "asset://localhost/**"
+          ]
+        }
+      },
+      "csp": "default-src 'self' asset: 'unsafe-inline' 'unsafe-eval' customprotocol://* http://localhost:* ws:localhost:* ipc: http://ipc.localhost *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' http://localhost:* ws:localhost:* ipc://localhost https://xmas.chaz.fun *; img-src 'self' asset: http://asset.localhost blob: data: *; font-src 'self' asset: http://localhost data: *; media-src 'self' blob: data: *;",
+      "dangerousDisableAssetCspModification": true
     },
-    "//": "👆👆👆 新增结束 👆👆👆",
-
-    "build": {
-        "devUrl": "http://localhost:1420",
-        "frontendDist": "../dist"
+    "withGlobalTauri": true
+  },
+  "plugins": {
+    "webview": {
+      "create_webview_window": true
     },
-    "app": {
-        "windows": [
-            {
-                "title": "芝芝",
-                "label": "main",
-                "url": "https://xmas.chaz.fun/?id=5YlLZOJ4sp1_HbMi&m=view",
-                "width": 1200,
-                "height": 800,
-                "resizable": true,
-                "fullscreen": false,
-                "visible": true,
-                "acceptFirstMouse": true,
-                "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
-            }
-        ],
-        "security": {
-            "assetProtocol": {
-                "enable": true,
-                "scope": {
-                    "allow": [
-                        "$APPCONFIG/**",
-                        "$APPLOCALDATA/**",
-                        "$APPCACHE/**",
-                        "$APPDATA/**",
-                        "$APPLOG/**",
-                        "$AUDIO/**",
-                        "$CACHE/**",
-                        "$CONFIG/**",
-                        "$DATA/**",
-                        "$LOCALDATA/**",
-                        "$DESKTOP/**",
-                        "$DOCUMENT/**",
-                        "$DOWNLOAD/**",
-                        "$EXE/**",
-                        "$FONT/**",
-                        "$HOME/**",
-                        "$PICTURE/**",
-                        "$PUBLIC/**",
-                        "$RUNTIME/**",
-                        "$ASSETS/**",
-                        "$VIDEO/**",
-                        "$TEMP/**",
-                        "$RESOURCE/../**",
-                        "$ASSETS/**",
-                        "$TEMPLATE/**",
-                        "**",
-                        "asset://localhost/**"
-                    ]
-                }
-            },
-            "csp": "default-src 'self' asset: 'unsafe-inline' 'unsafe-eval' customprotocol://* http://localhost:* ws:localhost:* ipc: http://ipc.localhost *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' http://localhost:* ws:localhost:* ipc://localhost https://xmas.chaz.fun *; img-src 'self' asset: http://asset.localhost blob: data: *; font-src 'self' asset: http://localhost data: *; media-src 'self' blob: data: *;",
-            "dangerousDisableAssetCspModification": true
-        },
-        "withGlobalTauri": true
-    },
-    "plugins": {
-        "webview": {
-            "create_webview_window": true
-        },
-        "updater": {
-            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaW
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI0MkI3NDVCOUM2NDE1QTgKUldTb0ZXU2NXM1FydEsrN29Edjg2c0kxZmk1YWpRa3ZUMjE1S2NLeGVFRkJRWW1SSnhXQ2F3S0EK",
+      "endpoints": [
+        "https://gh-proxy.com/github.com/Sjj1024/PakePlus/releases/latest/download/ppupdate.json",
+        "https://gh-proxy.org/http://github.com/Sjj1024/PakePlus/releases/latest/download/ppupdate.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}
