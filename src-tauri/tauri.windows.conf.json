@@ -1,8 +1,8 @@
 {
-    "identifier": "com.pakeplus.pacbao",
+    "identifier": "com.zhizhi.app",
     "bundle": {
         "active": true,
-        "targets": "all",
+        "targets": ["nsis"],
         "resources": [
             "./data/man.json",
             "./data/vconsole.min.js",
